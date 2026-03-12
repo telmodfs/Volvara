@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volvara — Instagram Strategy & Content Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:   #0A0A0A;
+  --gray:    #111111;
+  --gray2:   #1A1A1A;
+  --gray3:   #252525;
+  --gray4:   #333;
+  --amber:   #FFB020;
+  --amber-d: #D99510;
+  --crimson: #DC143C;
+  --white:   #F2EEE7;
+  --muted:   rgba(242,238,231,0.42);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'DM Mono', monospace; overflow-x: hidden; }
+
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* LAYOUT */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 3rem; position: relative; z-index: 1; }
+section { padding: 5rem 0; }
+section + section { border-top: 1px solid var(--gray3); }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,10,.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gray3);
+  padding: 1.2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: .1em; }
+.nav-logo .ra { color: transparent; -webkit-text-stroke: 1.5px var(--amber); }
+.nav-pill {
+  background: var(--crimson); color: var(--white);
+  font-size: .6rem; letter-spacing: .16em; text-transform: uppercase;
+  padding: .3rem .9rem; border-radius: 2px;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--amber); }
+
+/* SECTION LABELS */
+.sec-label {
+  font-size: .6rem; letter-spacing: .26em; text-transform: uppercase; color: var(--amber);
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;
+}
+.sec-label::after { content: ''; flex: 1; max-width: 48px; height: 1px; background: var(--gray3); }
+
+h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: .04em; line-height: .93; color: var(--white); margin-bottom: 1rem; }
+h2 .acc { color: var(--amber); }
+h2 .cr  { color: var(--crimson); }
+.intro { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.05rem; line-height: 1.75; color: var(--muted); max-width: 560px; margin-bottom: 3.5rem; }
+.intro em { font-style: normal; color: var(--white); }
+
+/* ── HERO ── */
+#hero { padding: 6rem 0 4rem; }
+.hero-inner { display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: center; }
+.hero-stats { display: flex; gap: 3rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--gray3); }
+.stat .n { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--amber); line-height: 1; }
+.stat .n.cr { color: var(--crimson); }
+.stat .l { font-size: .57rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: .25rem; }
+
+/* INSTAGRAM PHONE MOCKUP */
+.phone-wrap { display: flex; justify-content: center; }
+.phone {
+  width: 240px;
+  background: #0a0a0a;
+  border: 1px solid var(--gray3);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,176,32,.08);
+  position: relative;
+}
+.phone::before {
+  content: ''; position: absolute; inset: 0; z-index: 10; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,176,32,.05) 0%, transparent 60%);
+}
+.phone-status {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .6rem 1.2rem .3rem; font-size: .5rem; color: var(--muted);
+}
+.phone-notch { width: 60px; height: 8px; background: #111; border-radius: 4px; }
+/* IG Profile Header */
+.ig-profile-header { padding: .8rem 1rem 0; }
+.ig-back { font-size: .55rem; color: var(--white); margin-bottom: .5rem; opacity: .6; }
+.ig-username-row { display: flex; align-items: center; gap: .4rem; margin-bottom: .7rem; }
+.ig-username { font-family: 'DM Mono', monospace; font-size: .72rem; font-weight: 500; color: var(--white); }
+.ig-verified { width: 12px; height: 12px; background: var(--amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .4rem; color: var(--black); }
+.ig-avatar-row { display: flex; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.ig-avatar {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  background: var(--gray3);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+.ig-avatar::before {
+  content: ''; position: absolute; inset: -3px; border-radius: 50%; z-index: -1;
+  background: linear-gradient(135deg, var(--amber), var(--crimson));
+}
+.ig-avatar-inner {
+  width: 100%; height: 100%; border-radius: 50%; background: var(--gray2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .06em; color: var(--white);
+}
+.ig-counts { flex: 1; display: flex; justify-content: space-around; text-align: center; }
+.ig-count-n { font-family: 'DM Mono', monospace; font-size: .78rem; font-weight: 500; color: var(--white); }
+.ig-count-l { font-size: .48rem; color: var(--muted); margin-top: .1rem; }
+.ig-bio { font-size: .56rem; line-height: 1.6; color: var(--white); margin-bottom: .5rem; }
+.ig-bio .amber { color: var(--amber); }
+.ig-bio .cr { color: var(--crimson); }
+.ig-link { font-size: .54rem; color: #6bb5ff; margin-bottom: .7rem; }
+.ig-btn-row { display: flex; gap: .4rem; margin-bottom: .5rem; }
+.ig-btn {
+  flex: 1; padding: .35rem; border-radius: 6px; border: none; cursor: pointer;
+  font-family: 'DM Mono', monospace; font-size: .52rem; font-weight: 500; letter-spacing: .06em;
+}
+.ig-btn-follow { background: var(--amber); color: var(--black); }
+.ig-btn-msg { background: var(--gray3); color: var(--white); }
+.ig-btn-more { background: var(--gray3); color: var(--white); width: 28px; flex: 0; display: flex; align-items: center; justify-content: center; font-size: .7rem; }
+
+/* IG Highlights */
+.ig-highlights { display: flex; gap: .6rem; padding: .5rem 1rem; overflow-x: auto; }
+.ig-highlight { display: flex; flex-direction: column; align-items: center; gap: .25rem; cursor: pointer; }
+.ig-hl-ring {
+  width: 42px; height: 42px; border-radius: 50%; padding: 2px;
+  background: linear-gradient(135deg, var(--amber), var(--crimson));
+}
+.ig-hl-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--gray2); display: flex; align-items: center; justify-content: center; font-size: .9rem; border: 1.5px solid var(--black); }
+.ig-hl-label { font-size: .42rem; color: var(--white); letter-spacing: .04em; }
+
+/* IG Grid */
+.ig-grid-tabs { display: flex; border-top: 1px solid var(--gray3); }
+.ig-tab { flex: 1; padding: .5rem 0; text-align: center; font-size: .65rem; color: var(--white); border-bottom: 1.5px solid var(--white); }
+.ig-tab.inactive { color: var(--muted); border-bottom-color: transparent; }
+.ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
+.ig-cell {
+  aspect-ratio: 1; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: .8rem; letter-spacing: .06em;
+}
+.ig-cell.amber-bg  { background: var(--amber); color: var(--black); }
+.ig-cell.dark-bg   { background: var(--gray2); color: var(--white); }
+.ig-cell.crimson-bg{ background: var(--crimson); color: var(--white); }
+.ig-cell.black-bg  { background: #0d0d0d; color: var(--white); border: 1px solid var(--gray3); }
+.ig-cell-num { font-size: 1.2rem; opacity: .15; position: absolute; top: 2px; right: 4px; }
+.ig-cell-text { font-size: .52rem; text-align: center; padding: .3rem; line-height: 1.3; }
+.ig-cell-tag { position: absolute; bottom: 3px; left: 3px; font-size: .38rem; letter-spacing: .1em; background: rgba(0,0,0,.5); padding: .15rem .3rem; border-radius: 2px; }
+
+/* ── BIO ── */
+.bio-box {
+  background: var(--gray); border: 1px solid var(--gray3); border-radius: 3px;
+  padding: 2.5rem 3rem; position: relative; overflow: hidden;
+}
+.bio-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--crimson), var(--amber), transparent);
+}
+.bio-handle { font-size: .65rem; letter-spacing: .16em; color: var(--amber); margin-bottom: .8rem; }
+.bio-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: .06em; color: var(--white); margin-bottom: .6rem; }
+.bio-text { font-size: .78rem; line-height: 1.9; color: rgba(242,238,231,.65); white-space: pre-line; }
+.bio-text .hl { color: var(--amber); }
+.bio-text .cr { color: var(--crimson); }
+.bio-text strong { color: var(--white); }
+
+/* ── PILLARS ── */
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray3); border: 1px solid var(--gray3); }
+.pillar { background: var(--gray); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background .25s; }
+.pillar:hover { background: var(--gray2); }
+.pillar::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--amber); opacity: 0; transition: opacity .25s; }
+.pillar:hover::before { opacity: 1; }
+.pillar.cr::before { background: var(--crimson); }
+.pillar-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+.pillar-pct { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: rgba(255,176,32,.08); position: absolute; top: .5rem; right: 1rem; line-height: 1; pointer-events: none; }
+.pillar.cr .pillar-pct { color: rgba(220,20,60,.08); }
+.pillar-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .06em; color: var(--white); margin-bottom: .6rem; }
+.pillar-body { font-size: .74rem; line-height: 1.85; color: var(--muted); margin-bottom: 1rem; }
+.pillar-examples { display: flex; flex-direction: column; gap: .4rem; }
+.pillar-ex { font-size: .65rem; color: var(--muted); display: flex; align-items: flex-start; gap: .5rem; }
+.pillar-ex::before { content: '→'; color: var(--amber); flex-shrink: 0; }
+.pillar.cr .pillar-ex::before { color: var(--crimson); }
+
+/* ── GRID STRATEGY ── */
+.grid-preview-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.grid-legend { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.legend-item { display: flex; align-items: center; gap: .8rem; font-size: .72rem; color: var(--muted); }
+.legend-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+/* 9-post grid preview */
+.grid-9 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 340px; }
+.g9 {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: .65rem; letter-spacing: .04em;
+  text-align: center; padding: .3rem; line-height: 1.2; position: relative; overflow: hidden;
+  cursor: default; transition: opacity .2s;
+}
+.g9:hover { opacity: .85; }
+.g9-amber  { background: var(--amber); color: var(--black); }
+.g9-dark   { background: var(--gray2); color: var(--white); border: 1px solid var(--gray3); }
+.g9-crimson{ background: var(--crimson); color: var(--white); }
+.g9-outline{
+  background: transparent; color: var(--amber);
+  border: 1.5px solid var(--amber);
+}
+.g9-num { position: absolute; bottom: 2px; right: 4px; font-size: .45rem; opacity: .35; }
+
+/* ── HASHTAGS ── */
+.hashtag-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.ht-group { background: var(--gray); border: 1px solid var(--gray3); border-radius: 3px; padding: 1.5rem; }
+.ht-group-title { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 1px solid var(--gray3); }
+.ht-group-title.cr { color: var(--crimson); }
+.ht-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.ht { font-size: .65rem; color: var(--muted); background: var(--gray2); padding: .2rem .5rem; border-radius: 2px; border: 1px solid var(--gray3); transition: border-color .2s, color .2s; cursor: default; }
+.ht:hover { border-color: rgba(255,176,32,.4); color: var(--amber); }
+.ht.cr:hover { border-color: rgba(220,20,60,.4); color: var(--crimson); }
+
+/* ── CALENDAR ── */
+.calendar-grid {
+  display: grid; grid-template-columns: 80px repeat(7, 1fr);
+  gap: 1px; background: var(--gray3); border: 1px solid var(--gray3);
+}
+.cal-header { background: var(--gray2); padding: .6rem .5rem; font-size: .57rem; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); text-align: center; }
+.cal-header.day { color: var(--muted); }
+.cal-time { background: var(--gray); padding: .8rem .7rem; font-size: .6rem; color: var(--muted); display: flex; align-items: center; }
+.cal-cell { background: var(--gray); padding: .5rem; min-height: 70px; }
+.cal-cell.empty { background: var(--gray); }
+.cal-post {
+  border-radius: 2px; padding: .35rem .45rem; margin-bottom: .3rem;
+  font-size: .52rem; line-height: 1.4; cursor: default;
+  transition: transform .2s;
+}
+.cal-post:hover { transform: scale(1.03); }
+.cp-reel    { background: rgba(220,20,60,.18);  color: var(--crimson); border-left: 2px solid var(--crimson); }
+.cp-post    { background: rgba(255,176,32,.14);  color: var(--amber-d); border-left: 2px solid var(--amber); }
+.cp-story   { background: rgba(242,238,231,.07); color: var(--white);   border-left: 2px solid rgba(242,238,231,.3); }
+.cp-carousel{ background: rgba(107,181,255,.12); color: #6bb5ff;        border-left: 2px solid #6bb5ff; }
+.cp-format  { font-size: .44rem; letter-spacing: .1em; text-transform: uppercase; opacity: .7; margin-bottom: .15rem; }
+
+/* ── POST TEMPLATES ── */
+.templates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+/* Post card — simulates 1:1 post */
+.post-card {
+  border-radius: 3px; overflow: hidden;
+  border: 1px solid var(--gray3);
+  transition: transform .3s, box-shadow .3s;
+  cursor: default;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+
+.post-visual {
+  aspect-ratio: 1; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden;
+}
+.post-visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 50%);
+}
+.pv-amber   { background: linear-gradient(135deg, #1a1000, var(--gray2)); }
+.pv-crimson { background: linear-gradient(135deg, #1a0007, #0d0007); }
+.pv-grid    { background: var(--gray2); }
+
+.post-logo {
+  position: absolute; top: 1rem; right: 1rem; z-index: 2;
+  font-family: 'Bebas Neue', sans-serif; font-size: .75rem; letter-spacing: .12em;
+  color: rgba(242,238,231,.5);
+}
+.post-logo .ra { color: transparent; -webkit-text-stroke: 1px var(--amber); opacity: .5; }
+
+.post-headline {
+  position: relative; z-index: 2;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .04em; line-height: .95;
+  color: var(--white);
+}
+.post-headline .acc { color: var(--amber); }
+.post-headline .cr  { color: var(--crimson); }
+.post-sub {
+  position: relative; z-index: 2; margin-top: .4rem;
+  font-size: .58rem; line-height: 1.5; color: rgba(242,238,231,.55);
+}
+
+/* Decorative grid lines on post */
+.pv-grid-lines {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+/* Amber/crimson accent bar */
+.pv-accent-h { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.amber-bar { background: linear-gradient(to right, var(--amber), transparent); }
+.crimson-bar { background: linear-gradient(to right, var(--crimson), transparent); }
+.pv-big-num {
+  position: absolute; right: -5px; top: -10px; z-index: 1;
+  font-family: 'Bebas Neue', sans-serif; font-size: 6rem; line-height: 1;
+  color: rgba(255,176,32,.06); letter-spacing: .04em;
+}
+.pv-big-num.cr { color: rgba(220,20,60,.08); }
+
+.post-meta {
+  background: var(--gray2); padding: .8rem 1rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.pm-type { font-size: .55rem; letter-spacing: .15em; text-transform: uppercase; }
+.pm-type.amber { color: var(--amber); }
+.pm-type.cr    { color: var(--crimson); }
+.pm-type.blue  { color: #6bb5ff; }
+.pm-caption { font-size: .6rem; color: var(--muted); }
+
+/* ── STORIES HIGHLIGHTS ── */
+.highlights-row { display: flex; gap: 2rem; flex-wrap: wrap; }
+.hl-card {
+  display: flex; flex-direction: column; align-items: center; gap: .8rem;
+  cursor: default;
+}
+.hl-ring-big {
+  width: 80px; height: 80px; border-radius: 50%; padding: 3px;
+  position: relative;
+}
+.hl-ring-big.amber   { background: linear-gradient(135deg, var(--amber), #FF6B00); }
+.hl-ring-big.crimson { background: linear-gradient(135deg, var(--crimson), #8B0020); }
+.hl-ring-big.white   { background: linear-gradient(135deg, rgba(242,238,231,.4), rgba(242,238,231,.1)); }
+.hl-ring-big.gold    { background: linear-gradient(135deg, #FFD700, var(--amber)); }
+.hl-ring-big.muted   { background: linear-gradient(135deg, var(--gray3), var(--gray4)); }
+
+.hl-cover {
+  width: 100%; height: 100%; border-radius: 50%;
+  background: var(--gray2); border: 2.5px solid var(--black);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+}
+.hl-name { font-size: .62rem; letter-spacing: .1em; color: var(--white); text-align: center; }
+
+/* ── CAPTIONS ── */
+.caption-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.caption-card {
+  background: var(--gray); border: 1px solid var(--gray3); border-radius: 3px;
+  padding: 1.8rem; position: relative; overflow: hidden;
+}
+.caption-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; }
+.caption-card.amber::before { background: var(--amber); }
+.caption-card.crimson::before { background: var(--crimson); }
+.cc-format { font-size: .57rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: .8rem; }
+.cc-format .f { color: var(--amber); }
+.cc-format .f.cr { color: var(--crimson); }
+.cc-text { font-size: .76rem; line-height: 1.9; color: rgba(242,238,231,.7); white-space: pre-line; }
+.cc-text em { font-style: italic; color: var(--white); }
+.cc-hashtags { margin-top: 1rem; font-size: .65rem; color: rgba(107,181,255,.6); line-height: 1.7; }
+
+/* ── KPIs ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gray3); border: 1px solid var(--gray3); }
+.kpi { background: var(--gray); padding: 2rem 1.5rem; text-align: center; }
+.kpi-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--amber); line-height: 1; }
+.kpi-n.cr { color: var(--crimson); }
+.kpi-l { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: .4rem; }
+.kpi-period { font-size: .55rem; color: var(--gray4); margin-top: .2rem; }
+
+/* FOOTER */
+footer { padding: 3rem 0; border-top: 1px solid var(--gray3); }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .08em; }
+.footer-logo .ra { color: transparent; -webkit-text-stroke: 1px var(--amber); }
+.footer-meta { font-size: .6rem; letter-spacing: .1em; color: var(--muted); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .wrap { padding: 0 1.5rem; }
+  .hero-inner, .grid-preview-wrap, .caption-cards { grid-template-columns: 1fr; }
+  .pillars-grid, .hashtag-groups, .templates-grid, .kpi-grid { grid-template-columns: 1fr; }
+  .phone-wrap { display: none; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .calendar-grid { grid-template-columns: 60px repeat(3, 1fr); }
+  .cal-header.day:nth-child(n+6), .cal-cell:nth-child(n+6) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">VOLVA<span class="ra">RA</span></div>
+  <ul class="nav-links">
+    <li><a href="#bio">Bio</a></li>
+    <li><a href="#pillars">Pilares</a></li>
+    <li><a href="#grid">Grid</a></li>
+    <li><a href="#calendar">Calendário</a></li>
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#captions">Captions</a></li>
+  </ul>
+  <div class="nav-pill">Instagram Strategy</div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="sec-label">Volvara × Instagram</div>
+        <h2>CONSTRUIR<br>UMA <span class="acc">PRESENÇA</span><br><span class="cr">REAL.</span></h2>
+        <p class="intro">
+          O Instagram da Volvara não é um catálogo de serviços — é prova de que <em>sabemos o que fazemos</em>.
+          Cada post é um argumento de venda silencioso para o próximo cliente que nos vai pesquisar.
+        </p>
+        <div class="hero-stats">
+          <div class="stat"><div class="n">3</div><div class="l">Posts/semana<br>mínimo</div></div>
+          <div class="stat"><div class="n">5</div><div class="l">Stories/semana<br>mínimo</div></div>
+          <div class="stat"><div class="n cr">1</div><div class="l">Reel/semana<br>objectivo</div></div>
+          <div class="stat"><div class="n">30</div><div class="l">Hashtags<br>por post</div></div>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-status">
+            <span>9:41</span>
+            <div class="phone-notch"></div>
+            <span>●●●</span>
+          </div>
+          <div class="ig-profile-header">
+            <div class="ig-back">← @volvara.pt</div>
+            <div class="ig-username-row">
+              <span class="ig-username">volvara.pt</span>
+              <div class="ig-verified">✓</div>
+            </div>
+            <div class="ig-avatar-row">
+              <div class="ig-avatar">
+                <div class="ig-avatar-inner">VV</div>
+              </div>
+              <div class="ig-counts">
+                <div><div class="ig-count-n">0</div><div class="ig-count-l">Posts</div></div>
+                <div><div class="ig-count-n">—</div><div class="ig-count-l">Seguidores</div></div>
+                <div><div class="ig-count-n">12</div><div class="ig-count-l">A seguir</div></div>
+              </div>
+            </div>
+            <div class="ig-bio">
+              <span class="amber">Web Agency · Portimão 📍</span><br>
+              Fazemos sites que funcionam.<br>
+              Vês o resultado antes de pagar.<br>
+              <span class="cr">↓ 48h de entrega</span>
+            </div>
+            <div class="ig-link">🔗 volvara.pt</div>
+            <div class="ig-btn-row">
+              <button class="ig-btn ig-btn-follow">Seguir</button>
+              <button class="ig-btn ig-btn-msg">Mensagem</button>
+              <button class="ig-btn ig-btn-more">⌄</button>
+            </div>
+          </div>
+          <div class="ig-highlights">
+            <div class="ig-highlight"><div class="ig-hl-ring"><div class="ig-hl-inner">⚡</div></div><div class="ig-hl-label">Antes/Depois</div></div>
+            <div class="ig-highlight"><div class="ig-hl-ring"><div class="ig-hl-inner">💰</div></div><div class="ig-hl-label">Preços</div></div>
+            <div class="ig-highlight"><div class="ig-hl-ring"><div class="ig-hl-inner">🛠</div></div><div class="ig-hl-label">Processo</div></div>
+            <div class="ig-highlight"><div class="ig-hl-ring"><div class="ig-hl-inner">⭐</div></div><div class="ig-hl-label">Clientes</div></div>
+            <div class="ig-highlight"><div class="ig-hl-ring"><div class="ig-hl-inner">❓</div></div><div class="ig-hl-label">FAQ</div></div>
+          </div>
+          <div class="ig-grid-tabs">
+            <div class="ig-tab">⊞</div>
+            <div class="ig-tab inactive">☰</div>
+            <div class="ig-tab inactive">🏷</div>
+          </div>
+          <div class="ig-grid">
+            <div class="ig-cell amber-bg"><div class="ig-cell-num">01</div><div class="ig-cell-text">ANTES &<br>DEPOIS</div><div class="ig-cell-tag">REEL</div></div>
+            <div class="ig-cell dark-bg"><div class="ig-cell-num">02</div><div class="ig-cell-text">48H<br>ENTREGA</div><div class="ig-cell-tag">POST</div></div>
+            <div class="ig-cell crimson-bg"><div class="ig-cell-num">03</div><div class="ig-cell-text">€399<br>SITE</div><div class="ig-cell-tag">POST</div></div>
+            <div class="ig-cell black-bg"><div class="ig-cell-num">04</div><div class="ig-cell-text">PROCESSO</div><div class="ig-cell-tag">CARROSSEL</div></div>
+            <div class="ig-cell amber-bg"><div class="ig-cell-num">05</div><div class="ig-cell-text">CLIENTE<br>★★★★★</div><div class="ig-cell-tag">POST</div></div>
+            <div class="ig-cell dark-bg"><div class="ig-cell-num">06</div><div class="ig-cell-text">0€<br>RISCO</div><div class="ig-cell-tag">REEL</div></div>
+            <div class="ig-cell crimson-bg"><div class="ig-cell-num">07</div><div class="ig-cell-text">BTS<br>WORK</div><div class="ig-cell-tag">STORY</div></div>
+            <div class="ig-cell dark-bg"><div class="ig-cell-num">08</div><div class="ig-cell-text">SEO<br>LOCAL</div><div class="ig-cell-tag">CARROSSEL</div></div>
+            <div class="ig-cell amber-bg"><div class="ig-cell-num">09</div><div class="ig-cell-text">PORTIMÃO<br>LOCAL</div><div class="ig-cell-tag">POST</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section id="bio">
+  <div class="wrap">
+    <div class="sec-label">01 — Bio do Perfil</div>
+    <h2>BIO QUE<br><span class="acc">CONVERTE.</span></h2>
+    <p class="intro">150 caracteres. Zero desperdício. Cada linha responde a uma pergunta que o visitante tem antes de seguir ou enviar mensagem.</p>
+    <div class="bio-box">
+      <div class="bio-handle">@volvara.pt</div>
+      <div class="bio-name">VOLVARA</div>
+      <div class="bio-text">
+<span class="hl">Web Agency · Portimão 📍</span>
+Fazemos sites para negócios locais.
+Vês o resultado <strong>antes de pagar.</strong>
+<span class="cr">↓ 48h · €299 · Zero risco</span>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+      <div class="bio-box" style="opacity:.5;">
+        <div class="bio-handle">❌ Evitar</div>
+        <div class="bio-text" style="color:rgba(242,238,231,.4);">
+Somos uma agência criativa de desenvolvimento web especializada em criar experiências digitais únicas para empresas locais...
+        </div>
+      </div>
+      <div class="bio-box">
+        <div class="bio-handle">✅ Alternativa EN (se activar perfil EN)</div>
+        <div class="bio-text">
+<span class="hl">Web Agency · Portimão, Portugal 📍</span>
+Websites for small businesses.
+<strong>See your site before you pay.</strong>
+<span class="cr">↓ 48h · €299 · Zero risk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="sec-label">02 — Pilares de Conteúdo</div>
+    <h2>A REGRA<br>DOS <span class="acc">TRÊS</span><br><span class="cr">TERÇOS.</span></h2>
+    <p class="intro">Cada terço serve um propósito diferente. Juntos criam um feed que não é só bonito — é uma máquina de leads.</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-pct">33%</div>
+        <div class="pillar-icon">🏆</div>
+        <div class="pillar-title">Prova de Resultados</div>
+        <div class="pillar-body">Mostrar trabalho real. Antes/depois, clientes satisfeitos, sites entregues. É o conteúdo que converte — quem nos descobre quer ver prova, não promessas.</div>
+        <div class="pillar-examples">
+          <div class="pillar-ex">Antes/depois de um site cliente</div>
+          <div class="pillar-ex">Screenshot do Google Analytics (tráfego)</div>
+          <div class="pillar-ex">Testemunho real com foto do negócio</div>
+          <div class="pillar-ex">Portfolio novo publicado</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-pct">33%</div>
+        <div class="pillar-icon">🎓</div>
+        <div class="pillar-title">Educação &amp; Valor</div>
+        <div class="pillar-body">Ensinar algo útil aos donos de negócio. Conteúdo educativo constrói autoridade e mantém o perfil relevante mesmo para quem ainda não precisa de nós — mas vai precisar.</div>
+        <div class="pillar-examples">
+          <div class="pillar-ex">«5 sinais que o teu site está a custar clientes»</div>
+          <div class="pillar-ex">Como o Google decide quem aparece primeiro</div>
+          <div class="pillar-ex">Diferença entre site e página de Facebook</div>
+          <div class="pillar-ex">Porque o SSL importa para um restaurante</div>
+        </div>
+      </div>
+      <div class="pillar cr">
+        <div class="pillar-pct">33%</div>
+        <div class="pillar-icon">🤝</div>
+        <div class="pillar-title">Humanizar &amp; Localidade</div>
+        <div class="pillar-body">Portimão, o Algarve, a equipa, o processo. Somos locais — isso é uma vantagem competitiva real que nenhuma agência de Lisboa ou Porto tem aqui. Usar isso.</div>
+        <div class="pillar-examples">
+          <div class="pillar-ex">Behind-the-scenes a trabalhar num projecto</div>
+          <div class="pillar-ex">Destaque de um negócio local (parceria orgânica)</div>
+          <div class="pillar-ex">«O que vemos no Algarve que Lisboa não vê»</div>
+          <div class="pillar-ex">Story de um dia de trabalho em Portimão</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRID STRATEGY -->
+<section id="grid">
+  <div class="wrap">
+    <div class="sec-label">03 — Estratégia de Grid</div>
+    <h2>GRID QUE<br>CONTA UMA <span class="acc">HISTÓRIA.</span></h2>
+    <p class="intro">O grid de 9 posts é o primeiro cartão de visita. Quem visita o perfil vê estes 9 antes de qualquer outra coisa — têm de querer ver mais.</p>
+    <div class="grid-preview-wrap">
+      <div>
+        <p style="font-size:.75rem;color:var(--muted);line-height:1.9;margin-bottom:2rem;">
+          Padrão de alternância: <span style="color:var(--amber)">âmbar</span> / dark / <span style="color:var(--crimson)">crimson</span> — nunca dois posts do mesmo tipo lado a lado. O olho percorre o grid sem monotonia, os acentos de cor criam ritmo visual imediato.<br><br>
+          Reels e carrosseis ficam nas posições de maior destaque (cantos e centro). Posts estáticos preenchem os intervalos.
+        </p>
+        <div class="grid-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div>Acento âmbar — CTA, prova, promoção</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--gray2);border:1px solid var(--gray3)"></div>Dark — educação, processo, bastidores</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--crimson)"></div>Crimson — urgência, preço, testemunho forte</div>
+          <div class="legend-item"><div class="legend-dot" style="background:transparent;border:1.5px solid var(--amber)"></div>Outline — quote, pergunta, interacção</div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Preview — 9 posts mais recentes</p>
+        <div class="grid-9">
+          <div class="g9 g9-crimson">ANTES<br>&amp;<br>DEPOIS<div class="g9-num">01</div></div>
+          <div class="g9 g9-dark">48H<br>ENTREGA<div class="g9-num">02</div></div>
+          <div class="g9 g9-amber" style="color:var(--black)">€299<br>SITE<div class="g9-num">03</div></div>
+          <div class="g9 g9-dark">COMO<br>FUNCIONA<div class="g9-num">04</div></div>
+          <div class="g9 g9-amber" style="color:var(--black)">★★★★★<br>CLIENTE<div class="g9-num">05</div></div>
+          <div class="g9 g9-dark">SEO<br>LOCAL<div class="g9-num">06</div></div>
+          <div class="g9 g9-outline">«VÊS<br>ANTES<br>DE<br>PAGAR»<div class="g9-num">07</div></div>
+          <div class="g9 g9-crimson">SEM<br>RISCO<div class="g9-num">08</div></div>
+          <div class="g9 g9-dark">PORTIMÃO<br>LOCAL<div class="g9-num">09</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HASHTAGS -->
+<section id="hashtags">
+  <div class="wrap">
+    <div class="sec-label">04 — Estratégia de Hashtags</div>
+    <h2>30 HASHTAGS<br><span class="acc">CERTOS.</span></h2>
+    <p class="intro">Mix de alcance vasto, nicho e localização. Nunca usar as mesmas 30 em todos os posts — rodar entre os grupos abaixo para evitar shadow ban.</p>
+    <div class="hashtag-groups">
+      <div class="ht-group">
+        <div class="ht-group-title">🌍 Alcance vasto (5–8 por post)</div>
+        <div class="ht-tags">
+          <span class="ht">#websitedesign</span><span class="ht">#smallbusiness</span><span class="ht">#digitalmarketing</span><span class="ht">#webdesign</span><span class="ht">#onlinebusiness</span><span class="ht">#entrepreneur</span><span class="ht">#businessowner</span><span class="ht">#makemoneyonline</span>
+        </div>
+      </div>
+      <div class="ht-group">
+        <div class="ht-group-title">🎯 Nicho PT (10–12 por post)</div>
+        <div class="ht-tags">
+          <span class="ht">#websitesportugal</span><span class="ht">#criarsiteportugal</span><span class="ht">#negociolocal</span><span class="ht">#empreendedorismo</span><span class="ht">#agenciadigital</span><span class="ht">#marketingdigital</span><span class="ht">#presencaonline</span><span class="ht">#seolocal</span><span class="ht">#webdesignpt</span><span class="ht">#pequenaempresa</span>
+        </div>
+      </div>
+      <div class="ht-group">
+        <div class="ht-group-title cr">📍 Local PT (8–10 por post)</div>
+        <div class="ht-tags">
+          <span class="ht cr">#portimão</span><span class="ht cr">#algarve</span><span class="ht cr">#faro</span><span class="ht cr">#algarvebusiness</span><span class="ht cr">#vilamoura</span><span class="ht cr">#lagos</span><span class="ht cr">#albufeira</span><span class="ht cr">#silves</span><span class="ht cr">#negociosalgarve</span><span class="ht cr">#visitportugal</span>
+        </div>
+      </div>
+      <div class="ht-group">
+        <div class="ht-group-title">🏷 Branded (sempre incluir)</div>
+        <div class="ht-tags">
+          <span class="ht">#volvara</span><span class="ht">#volvarapt</span><span class="ht">#sitepronto</span><span class="ht">#vedantesdepagar</span>
+        </div>
+      </div>
+      <div class="ht-group">
+        <div class="ht-group-title">🎨 Nicho EN (para posts EN)</div>
+        <div class="ht-tags">
+          <span class="ht">#localwebdesign</span><span class="ht">#websitelaunch</span><span class="ht">#smallbizowner</span><span class="ht">#websitetips</span><span class="ht">#growyourbusiness</span><span class="ht">#digitalagency</span><span class="ht">#webdev</span><span class="ht">#seo</span>
+        </div>
+      </div>
+      <div class="ht-group">
+        <div class="ht-group-title">⚡ Reels específicos</div>
+        <div class="ht-tags">
+          <span class="ht">#reels</span><span class="ht">#instagramreels</span><span class="ht">#beforeandafter</span><span class="ht">#webdesignreels</span><span class="ht">#businesstips</span><span class="ht">#howto</span><span class="ht">#tutorial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar">
+  <div class="wrap">
+    <div class="sec-label">05 — Calendário Editorial</div>
+    <h2>SEMANA <span class="acc">TIPO.</span></h2>
+    <p class="intro">Consistência bate perfeição. 3 posts + 5 stories + 1 reel por semana é sustentável a solo — e suficiente para crescer organicamente no Algarve.</p>
+    <div class="calendar-grid">
+      <div class="cal-header">Hora</div>
+      <div class="cal-header day">Seg</div>
+      <div class="cal-header day">Ter</div>
+      <div class="cal-header day">Qua</div>
+      <div class="cal-header day">Qui</div>
+      <div class="cal-header day">Sex</div>
+      <div class="cal-header day">Sáb</div>
+      <div class="cal-header day">Dom</div>
+
+      <div class="cal-time">09:00</div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-post"><div class="cp-format">Post</div>Prova de resultado / Antes-depois</div>
+      </div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-carousel"><div class="cp-format">Carrossel</div>Educação: dica útil p/ negócios</div>
+      </div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-reel"><div class="cp-format">Reel ⚡</div>Antes/depois ou processo em 30s</div>
+      </div>
+      <div class="cal-cell empty"></div>
+
+      <div class="cal-time">13:00</div>
+      <div class="cal-cell">
+        <div class="cal-post cp-story"><div class="cp-format">Story</div>Poll: "Tens site?" ou curiosidade</div>
+      </div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-story"><div class="cp-format">Story</div>BTS: trabalho do dia</div>
+      </div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-story"><div class="cp-format">Story</div>Share do post do Qui</div>
+      </div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-post"><div class="cp-format">Post</div>Local / Algarve / Humanizar marca</div>
+      </div>
+
+      <div class="cal-time">18:00</div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-story"><div class="cp-format">Story</div>Partilhar post do Ter</div>
+      </div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-story"><div class="cp-format">Story</div>Question box: dúvidas sobre sites</div>
+      </div>
+      <div class="cal-cell empty"></div>
+      <div class="cal-cell">
+        <div class="cal-post cp-story"><div class="cp-format">Story</div>CTA: «Queres saber o preço?»</div>
+      </div>
+      <div class="cal-cell empty"></div>
+    </div>
+    <p style="margin-top:1.2rem;font-size:.65rem;color:var(--muted);">Melhores horários para PT: <span style="color:var(--white);">Terça–Quinta 9h–11h e 18h–20h</span> · Sexta a partir das 12h · Sábado manhã para Reels</p>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section id="templates">
+  <div class="wrap">
+    <div class="sec-label">06 — Templates de Posts</div>
+    <h2>POSTS QUE<br><span class="acc">PARAM O</span><br><span class="cr">SCROLL.</span></h2>
+    <p class="intro">Três templates base — cada um serve um pilar diferente. Consistência visual com variação de conteúdo.</p>
+    <div class="templates-grid">
+
+      <!-- Template 1: Resultado -->
+      <div class="post-card">
+        <div class="post-visual pv-amber">
+          <div class="pv-grid-lines"></div>
+          <div class="pv-accent-h amber-bar"></div>
+          <div class="pv-big-num">01</div>
+          <div class="post-logo">VOLVA<span class="ra">RA</span></div>
+          <div class="post-headline">
+            ANTES: <span class="cr">INVISÍVEL.</span><br>
+            DEPOIS: <span class="acc">ONLINE.</span>
+          </div>
+          <div class="post-sub">Restaurante O Farol · Portimão → site em 48h</div>
+        </div>
+        <div class="post-meta">
+          <span class="pm-type amber">Post / Resultado</span>
+          <span class="pm-caption">Pilar 1 — Prova</span>
+        </div>
+      </div>
+
+      <!-- Template 2: Educação -->
+      <div class="post-card">
+        <div class="post-visual pv-grid" style="background:var(--gray2);">
+          <div class="pv-grid-lines"></div>
+          <div class="pv-accent-h crimson-bar"></div>
+          <div class="pv-big-num cr">05</div>
+          <div class="post-logo">VOLVA<span class="ra">RA</span></div>
+          <div class="post-headline">
+            5 SINAIS QUE O<br>TEU SITE ESTÁ<br>A <span class="cr">CUSTAR</span><br><span class="acc">CLIENTES.</span>
+          </div>
+          <div class="post-sub">Carrossel — desliza →</div>
+        </div>
+        <div class="post-meta">
+          <span class="pm-type blue">Carrossel / Educação</span>
+          <span class="pm-caption">Pilar 2 — Valor</span>
+        </div>
+      </div>
+
+      <!-- Template 3: Local -->
+      <div class="post-card">
+        <div class="post-visual pv-crimson">
+          <div class="pv-grid-lines"></div>
+          <div class="pv-accent-h amber-bar"></div>
+          <div class="pv-big-num">PT</div>
+          <div class="post-logo">VOLVA<span class="ra">RA</span></div>
+          <div class="post-headline">
+            SOMOS DE<br><span class="acc">PORTIMÃO.</span><br>SABEMOS<br>O QUE<br>PRECISAS.
+          </div>
+          <div class="post-sub">Agência local · Algarve · volvara.pt</div>
+        </div>
+        <div class="post-meta">
+          <span class="pm-type cr">Post / Local</span>
+          <span class="pm-caption">Pilar 3 — Humanizar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <div class="wrap">
+    <div class="sec-label">07 — Stories Highlights</div>
+    <h2>HIGHLIGHTS QUE<br><span class="acc">VENDEM</span> 24/7.</h2>
+    <p class="intro">Quem visita o perfil pela primeira vez vai directamente aos highlights. São o menu do restaurante — têm de ter tudo o que importa, organizado.</p>
+    <div class="highlights-row">
+      <div class="hl-card">
+        <div class="hl-ring-big amber"><div class="hl-cover">⚡</div></div>
+        <div class="hl-name">Antes/<br>Depois</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-ring-big crimson"><div class="hl-cover">💰</div></div>
+        <div class="hl-name">Preços &<br>Planos</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-ring-big gold"><div class="hl-cover">⭐</div></div>
+        <div class="hl-name">Clientes<br>Reais</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-ring-big white"><div class="hl-cover">🛠</div></div>
+        <div class="hl-name">Como<br>Funciona</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-ring-big crimson"><div class="hl-cover">❓</div></div>
+        <div class="hl-name">FAQ</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-ring-big muted"><div class="hl-cover">📍</div></div>
+        <div class="hl-name">Portimão<br>Local</div>
+      </div>
+    </div>
+    <p style="margin-top:2rem;font-size:.72rem;color:var(--muted);line-height:1.8;">
+      Ordem recomendada: <span style="color:var(--white)">Antes/Depois primeiro</span> (prova imediata), depois Preços (responde à dúvida mais comum), depois Clientes (confiança), depois Como Funciona (processo), FAQ (objecções), e Local (diferenciador).
+    </p>
+  </div>
+</section>
+
+<!-- CAPTIONS -->
+<section id="captions">
+  <div class="wrap">
+    <div class="sec-label">08 — Captions Prontas</div>
+    <h2>VOZ DA<br><span class="acc">MARCA.</span></h2>
+    <p class="intro">Directa. Sem jargão. Fala como um amigo que percebe de web — não como uma agência cara de Lisboa. Em português sempre que possível.</p>
+    <div class="caption-cards">
+      <div class="caption-card amber">
+        <div class="cc-format">Post de resultado · <span class="f">Antes/Depois</span></div>
+        <div class="cc-text">O <em>Restaurante O Farol</em> não tinha site.
+Agora tem — e ficou pronto em 48 horas.
+
+Sem formulários complicados.
+Sem reuniões a perder tempo.
+Sem pagar antes de ver.
+
+É assim que trabalhamos.
+
+Se tens negócio no Algarve e ainda não tens site — fala connosco. O primeiro passo é grátis.
+
+🔗 volvara.pt (link na bio)</div>
+        <div class="cc-hashtags">#websiteportugal #algarve #portimão #negociolocal #volvara</div>
+      </div>
+
+      <div class="caption-card crimson">
+        <div class="cc-format">Reel · <span class="f cr">Hook forte</span></div>
+        <div class="cc-text">O teu concorrente tem site.
+Tu não.
+
+Todos os dias que passas sem presença online, é um cliente que vai ter a ele.
+
+A boa notícia? Em 48 horas mudamos isso.
+
+Sem contratos. Vês antes de pagar. €299.
+
+Comenta «SITE» e falamos hoje. 👇</div>
+        <div class="cc-hashtags">#smallbusiness #websitedesign #digitaltransformation #volvara #portimão</div>
+      </div>
+
+      <div class="caption-card amber">
+        <div class="cc-format">Carrossel educativo · <span class="f">5 sinais</span></div>
+        <div class="cc-text">5 sinais que o teu site está a custar clientes 👇
+
+1/ Demora mais de 3 segundos a carregar
+2/ Não funciona no telemóvel
+3/ Não aparece no Google quando pesquisas o teu negócio
+4/ Não tem SSL (o cadeado verde)
+5/ Não tem formulário de contacto
+
+Se respondeste sim a 2 ou mais — temos de falar.
+
+Desliza para ver como resolver cada um →</div>
+        <div class="cc-hashtags">#websitetips #seo #digitalmarketing #negociolocal #algarve</div>
+      </div>
+
+      <div class="caption-card crimson">
+        <div class="cc-format">Story CTA · <span class="f cr">Directo</span></div>
+        <div class="cc-text">Pergunta rápida ⬇️
+
+Tens website para o teu negócio?
+
+[ SIM, tenho ]
+[ NÃO, ainda não ]
+[ Tenho mas está mal ]
+
+(Responde com sticker de poll)
+
+---
+Se escolheste «Não» ou «Está mal» — faz swipe up. Mostramos como o teu ficaria, sem custares nada.</div>
+        <div class="cc-hashtags">— (Stories não usam hashtags)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section id="kpis">
+  <div class="wrap">
+    <div class="sec-label">09 — Métricas &amp; Objectivos</div>
+    <h2>MEDIR O<br>QUE <span class="acc">IMPORTA.</span></h2>
+    <p class="intro">Vaidade não paga contas. Seguidores são uma métrica de vaidade — leads são o objectivo real. Avaliar mensalmente.</p>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-n">3.5%</div><div class="kpi-l">Taxa de<br>engagement</div><div class="kpi-period">mínimo mês 3</div></div>
+      <div class="kpi"><div class="kpi-n">500</div><div class="kpi-l">Seguidores<br>orgânicos</div><div class="kpi-period">objectivo mês 6</div></div>
+      <div class="kpi"><div class="kpi-n cr">5</div><div class="kpi-l">Leads/mês<br>via DM</div><div class="kpi-period">objectivo mês 3</div></div>
+      <div class="kpi"><div class="kpi-n">80%</div><div class="kpi-l">Completion rate<br>stories</div><div class="kpi-period">benchmark</div></div>
+    </div>
+    <p style="margin-top:2rem;font-size:.72rem;color:var(--muted);line-height:1.8;">
+      Ferramentas: <span style="color:var(--white)">Instagram Insights</span> (nativo, gratuito) · Revisão semanal às métricas de alcance e engagement · Revisão mensal à estratégia de conteúdo com base nos posts com melhor performance.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-logo">VOLVA<span class="ra">RA</span></div>
+      <div class="footer-meta">Instagram Strategy · Uso interno · Março 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Smooth reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: .08 });
+
+document.querySelectorAll('.pillar, .post-card, .hl-card, .caption-card, .kpi, .ht-group').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
