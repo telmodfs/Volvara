@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Volvara — Web Agency. Portimão, Portugal. Em breve.">
+<title>Volvara — Em Breve</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:   #0A0A0A;
+  --gray:    #111111;
+  --gray2:   #1A1A1A;
+  --gray3:   #252525;
+  --amber:   #FFB020;
+  --amber-d: #D99510;
+  --crimson: #DC143C;
+  --white:   #F2EEE7;
+  --muted:   rgba(242,238,231,0.38);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Mono', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+#cur {
+  position: fixed; z-index: 9999;
+  width: 10px; height: 10px;
+  background: var(--amber);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: width .2s, height .2s, background .2s;
+  top: -20px; left: -20px;
+  mix-blend-mode: difference;
+}
+#cur.big { width: 40px; height: 40px; }
+#cur.red { background: var(--crimson); }
+@media (hover: none) { #cur { display: none !important; } body { cursor: auto; } }
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1;
+  pointer-events: none; opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* GRID BACKGROUND */
+.grid-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  animation: gridDrift 40s linear infinite;
+}
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 72px 72px; }
+}
+
+/* AMBER GLOW — top right */
+.glow-a {
+  position: fixed; z-index: 0;
+  right: -10vw; top: -10vh;
+  width: 60vw; height: 60vh;
+  background: radial-gradient(ellipse, rgba(255,176,32,.10) 0%, transparent 65%);
+  pointer-events: none;
+  animation: breathe 7s ease-in-out infinite;
+}
+/* CRIMSON GLOW — bottom left */
+.glow-b {
+  position: fixed; z-index: 0;
+  left: -10vw; bottom: -10vh;
+  width: 50vw; height: 50vh;
+  background: radial-gradient(ellipse, rgba(220,20,60,.08) 0%, transparent 65%);
+  pointer-events: none;
+  animation: breathe 9s ease-in-out infinite reverse;
+}
+@keyframes breathe {
+  0%, 100% { opacity: .7; transform: scale(1); }
+  50%       { opacity: 1;  transform: scale(1.06); }
+}
+
+/* MAIN LAYOUT */
+main {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  height: auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 2.4rem 4rem;
+}
+
+/* NAV BAR */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: .1em;
+  color: var(--white);
+  text-decoration: none;
+}
+.logo .ra { color: transparent; -webkit-text-stroke: 1.5px var(--amber); }
+
+.top-badge {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted);
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--crimson);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+
+/* HERO CONTENT */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+/* BIG EYEBROW */
+.eyebrow {
+  display: flex; align-items: center; gap: .8rem;
+  font-size: .63rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp .6s .1s ease both;
+}
+.eyebrow-bar { width: 28px; height: 1px; background: var(--amber); }
+
+/* TITLE — stacked Bebas Neue */
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  line-height: 1.0;
+  letter-spacing: .02em;
+}
+.t1 {
+  font-size: clamp(5rem, 13vw, 12rem);
+  color: var(--white);
+  display: block;
+  opacity: 0; animation: fadeUp .8s .25s ease both;
+}
+.t2 {
+  font-size: clamp(5rem, 13vw, 12rem);
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--amber);
+  display: block;
+  opacity: 0; animation: fadeUp .8s .4s ease both;
+}
+.t3 {
+  font-size: clamp(5rem, 13vw, 12rem);
+  color: var(--white);
+  display: block;
+  opacity: 0; animation: fadeUp .8s .55s ease both;
+}
+.t3 .cr { color: var(--crimson); -webkit-text-stroke: 0; display: inline-block; line-height: 1; vertical-align: bottom; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* HORIZONTAL DIVIDER — amber line */
+.divider {
+  width: 0; height: 1px;
+  background: linear-gradient(to right, var(--amber), rgba(255,176,32,.2));
+  margin: 2.5rem 0;
+  animation: growLine .8s .85s ease both;
+}
+@keyframes growLine { from { width: 0; } to { width: min(600px, 70vw); } }
+
+/* SUBLINE */
+.subline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 4rem;
+  max-width: 900px;
+  opacity: 0; animation: fadeUp .7s 1s ease both;
+}
+.sub-text {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(.9rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.sub-text em { font-style: normal; color: var(--white); }
+.sub-text strong { font-style: normal; color: var(--amber); font-family: 'DM Mono', monospace; font-size: .85em; }
+
+/* NOTIFY FORM */
+.notify-form {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  min-width: 280px;
+}
+.notify-label {
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted);
+}
+.notify-row {
+  display: flex;
+  border: 1px solid var(--gray3);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.notify-row:focus-within { border-color: rgba(255,176,32,.5); }
+.notify-input {
+  flex: 1;
+  background: var(--gray2);
+  border: none; outline: none;
+  padding: .75rem 1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: .75rem;
+  color: var(--white);
+}
+.notify-input::placeholder { color: var(--muted); }
+.notify-btn {
+  background: var(--crimson);
+  border: none; outline: none; cursor: pointer;
+  padding: .75rem 1.2rem;
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--white);
+  transition: background .2s;
+  white-space: nowrap;
+}
+.notify-btn:hover { background: #b5102f; }
+.notify-sent { display: none; font-size: .72rem; color: var(--amber); letter-spacing: .08em; }
+
+/* TEASER CARDS — what's coming */
+.teaser-strip {
+  display: flex; gap: 1px;
+  background: var(--gray3);
+  border: 1px solid var(--gray3);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 3rem;
+  opacity: 0; animation: fadeUp .7s 1.2s ease both;
+}
+.teaser-card {
+  flex: 1;
+  background: var(--gray);
+  padding: 1.4rem 1.8rem;
+  transition: background .25s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.teaser-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: transparent;
+  transition: background .25s;
+}
+.teaser-card:hover { background: var(--gray2); }
+.teaser-card:hover::before { background: var(--amber); }
+.teaser-card.cr:hover::before { background: var(--crimson); }
+
+.tc-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem; letter-spacing: .06em; line-height: 1;
+  color: rgba(255,176,32,.06);
+  position: absolute; top: .6rem; right: 1rem;
+  pointer-events: none;
+}
+.tc-icon { font-size: 1.2rem; margin-bottom: .7rem; }
+.tc-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.05rem; letter-spacing: .06em;
+  color: var(--white);
+  margin-bottom: .4rem;
+}
+.tc-body {
+  font-size: .68rem; line-height: 1.75; color: var(--muted);
+}
+.tc-tag {
+  display: inline-block; margin-top: .8rem;
+  font-size: .55rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(255,176,32,.2);
+  padding: .18rem .6rem; border-radius: 2px;
+}
+.tc-tag.cr { color: var(--crimson); border-color: rgba(220,20,60,.2); }
+
+/* BOTTOM BAR */
+.bottom-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray3);
+  opacity: 0; animation: fadeUp .6s 1.4s ease both;
+}
+.bottom-left {
+  font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.bottom-left a { color: var(--amber); text-decoration: none; transition: color .2s; }
+.bottom-left a:hover { color: var(--white); }
+
+.socials { display: flex; gap: 1.2rem; }
+.social-link {
+  font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color .2s;
+  display: flex; align-items: center; gap: .35rem;
+}
+.social-link:hover { color: var(--white); }
+.social-link svg { width: 12px; height: 12px; fill: currentColor; }
+
+/* COUNTDOWN — big ambient number in background */
+.countdown-ambient {
+  position: fixed; z-index: 1;
+  right: 3vw; top: 50%; transform: translateY(-50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 22vw, 22rem);
+  letter-spacing: .04em; line-height: 1;
+  color: rgba(255,176,32,.025);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+  main { padding: 1.8rem 1.5rem; }
+  .subline { grid-template-columns: 1fr; gap: 2rem; }
+  .teaser-strip { flex-direction: column; }
+  .countdown-ambient { display: none; }
+  .bottom-bar { flex-direction: column; gap: 1rem; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div class="grid-bg"></div>
+<div class="glow-a"></div>
+<div class="glow-b"></div>
+
+<!-- ambient countdown -->
+<div class="countdown-ambient" id="ambientCount">--</div>
+
+<main>
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <a href="#" class="logo">VOLVA<span class="ra">RA</span></a>
+    <div style="display:flex;align-items:center;gap:1rem;">
+    <button id="langToggle" onclick="toggleLang()" style="background:transparent;border:1px solid rgba(242,238,231,0.2);color:rgba(242,238,231,0.5);font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;padding:.3rem .7rem;border-radius:2px;cursor:pointer;transition:all .2s;" onmouseenter="this.style.borderColor='rgba(255,176,32,.5)';this.style.color='#FFB020'" onmouseleave="this.style.borderColor='rgba(242,238,231,0.2)';this.style.color='rgba(242,238,231,0.5)'">EN</button>
+    <div class="top-badge">
+      <div class="badge-dot"></div>
+      <span data-pt="Em construção" data-en="Coming soon">Em construção</span>
+    </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">
+      <div class="eyebrow-bar"></div>
+      <span data-pt="Web Agency · 2026" data-en="Web Agency · 2026">Web Agency · 2026</span>
+    </div>
+
+    <h1 class="title">
+      <span class="t1" data-pt="ALGO" data-en="SOMETHING">ALGO</span>
+      <span class="t2" data-pt="DIFERENTE" data-en="DIFFERENT">DIFERENTE</span>
+      <span class="t3" data-pt='VEM AÍ.<span class="cr">.</span>' data-en='IS COMING.<span class="cr">.</span>'>VEM AÍ.<span class="cr">.</span></span>
+    </h1>
+
+    <div class="divider"></div>
+
+    <div class="subline">
+      <p class="sub-text">
+        <span data-pt='Estamos a construir uma agência diferente.<br>Websites para pequenos negócios que <em>funcionam</em> — tão rápidos que quase não deste por esperar, vistos antes de pagar.<br><em>Em breve. A sério.</em>' data-en='We are building a different kind of agency.<br>Websites for small businesses that <em>work</em> — delivered so fast you barely had time to wait, seen before you pay.<br><em>Coming soon. For real.</em>'>Estamos a construir uma agência diferente.<br>Websites para pequenos negócios que <em>funcionam</em> — tão rápidos que quase não deste por esperar, vistos antes de pagar.<br><em>Em breve. A sério.</em></span>
+      </p>
+
+      <div class="notify-form">
+        <span class="notify-label" data-pt="Avisa-me quando abrir" data-en="Notify me when live">Avisa-me quando abrir</span>
+        <div class="notify-row">
+          <input class="notify-input" type="email" placeholder="teu@email.pt" id="notifyEmail">
+          <button class="notify-btn" id="notifyBtn" onclick="handleNotify()">→</button>
+        </div>
+        <div class="notify-sent" id="notifySent" data-pt="✓ Anotado. Avisamos em breve." data-en="✓ Noted. We’ll let you know.">✓ Anotado. Avisamos em breve.</div>
+      </div>
+    </div>
+
+    <!-- TEASER CARDS — what's coming -->
+    <div class="teaser-strip">
+      <div class="teaser-card">
+        <div class="tc-num">01</div>
+        <div class="tc-icon">⚡</div>
+        <div class="tc-title" data-pt="Rápido de Doer" data-en="Blink Fast">Rápido de Doer</div>
+        <div class="tc-body" data-pt="O site está pronto antes de achares que devia estar. Sem reuniões intermináveis, sem esperas, sem desculpas — só resultado." data-en="Your site is done before you expect it to be. No endless meetings, no waiting, no excuses — just results.">O site está pronto antes de achares que devia estar. Sem reuniões intermináveis, sem esperas, sem desculpas — só resultado.</div>
+        <span class="tc-tag" data-pt="Velocidade absurda" data-en="Absurd speed">Velocidade absurda</span>
+      </div>
+      <div class="teaser-card">
+        <div class="tc-num">02</div>
+        <div class="tc-icon">👁</div>
+        <div class="tc-title" data-pt="Vês Antes" data-en="See First">Vês Antes</div>
+        <div class="tc-body" data-pt="O teu site está construído antes de pagares um cêntimo. Gostas? Fica. Não gostas? Não deves nada. O risco é nosso." data-en="Your site is built before you pay a cent. Like it? It's yours. Don't? You owe nothing. The risk is ours.">O teu site está construído antes de pagares um cêntimo. Gostas? Fica. Não gostas? Não deves nada. O risco é nosso.</div>
+        <span class="tc-tag" data-pt="Zero risco" data-en="Zero risk">Zero risco</span>
+      </div>
+      <div class="teaser-card cr">
+        <div class="tc-num">03</div>
+        <div class="tc-icon">🌍</div>
+        <div class="tc-title" data-pt="Sem Fronteiras" data-en="No Borders">Sem Fronteiras</div>
+        <div class="tc-body" data-pt="Nascemos em Portimão, Portugal. Trabalhamos para toda a EU. O processo é 100% remoto — tão simples de Lisboa como de Paris." data-en="Born in Portimão, Portugal. We work across the EU. Fully remote — as easy from Lisbon as from Paris.">Nascemos em Portimão, Portugal. Trabalhamos para toda a EU. O processo é 100% remoto — tão simples de Lisboa como de Paris.</div>
+        <span class="tc-tag cr">PT · EU · Remote</span>
+      </div>
+      <div class="teaser-card">
+        <div class="tc-num">04</div>
+        <div class="tc-icon">🛠</div>
+        <div class="tc-title" data-pt="Tudo Incluído" data-en="All Included">Tudo Incluído</div>
+        <div class="tc-body" data-pt="Design, hosting, SSL, domínio, SEO e actualizações mensais. Um único pacote — sem surpresas, sem custos escondidos, sem letras pequenas." data-en="Design, hosting, SSL, domain, SEO and monthly updates. One clean package — no surprises, no hidden costs, no small print.">Design, hosting, SSL, domínio, SEO e actualizações mensais. Um único pacote — sem surpresas, sem custos escondidos, sem letras pequenas.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM BAR -->
+  <footer class="bottom-bar">
+    <div class="bottom-left">
+      <span data-pt="Questões? Escreve para" data-en="Questions? Write to">Questões? Escreve para</span> <a href="mailto:go@volvara.pt" style="color:var(--amber);text-decoration:none;">go@volvara.pt</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+351917810999">+351 917 810 999</a>
+    </div>
+    <div class="socials">
+      <a href="https://instagram.com/volvara.pt" class="social-link" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @volvara.pt
+      </a>
+      <a href="https://wa.me/351917810999" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </footer>
+</main>
+
+<script>
+// CURSOR
+(function() {
+  const cur = document.getElementById('cur');
+  let mx = -20, my = -20;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px';
+    cur.style.top  = my + 'px';
+  });
+  document.querySelectorAll('a, button, .teaser-card, .notify-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.classList.add('big'); cur.classList.add('red'); });
+    el.addEventListener('mouseleave', () => { cur.classList.remove('big'); cur.classList.remove('red'); });
+  });
+})();
+
+// AMBIENT COUNTDOWN — days until a fuzzy launch
+(function() {
+  const launch = new Date('2026-06-01');
+  function update() {
+    const now = new Date();
+    const diff = Math.max(0, Math.ceil((launch - now) / 86400000));
+    const el = document.getElementById('ambientCount');
+    if (el) el.textContent = diff > 0 ? String(diff).padStart(3, '0') : '001';
+  }
+  update();
+  setInterval(update, 60000);
+})();
+
+// NOTIFY FORM
+// ─── FORMSPREE ID ────────────────────────────────────────────
+// 1. Vai a https://formspree.io → cria conta gratuita
+// 2. New Form → name "Volvara Launch Notify" → copy the form ID
+// 3. Substitui YOUR_FORM_ID abaixo pelo ID (ex: xldrzpqk)
+const FORMSPREE_ID = 'xreykapg';
+// ─────────────────────────────────────────────────────────────
+
+async function handleNotify() {
+  const input = document.getElementById('notifyEmail');
+  const btn   = document.getElementById('notifyBtn');
+  const sent  = document.getElementById('notifySent');
+  const row   = input.closest('.notify-row');
+  const email = input.value.trim();
+
+  // Basic validation
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    row.style.borderColor = 'var(--crimson)';
+    setTimeout(() => row.style.borderColor = '', 1400);
+    input.focus();
+    return;
+  }
+
+  // Loading state
+  btn.textContent = '...';
+  btn.disabled = true;
+  input.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+      method:  'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body:    JSON.stringify({
+        email:   email,
+        subject: 'Volvara — Launch notification request',
+        message: 'New subscriber: ' + email,
+        _replyto: email
+      })
+    });
+
+    if (res.ok) {
+      // Success
+      row.style.display  = 'none';
+      sent.style.display = 'block';
+      // Honour lang state
+      const lang = document.documentElement.lang || 'pt';
+      sent.textContent = lang === 'en'
+        ? '✓ Noted. We’ll let you know.'
+        : '✓ Anotado. Avisamos em breve.';
+    } else {
+      throw new Error('Server error ' + res.status);
+    }
+  } catch (err) {
+    // Fallback — show error inline, re-enable form
+    btn.textContent = '→';
+    btn.disabled  = false;
+    input.disabled = false;
+    row.style.borderColor = 'var(--crimson)';
+    setTimeout(() => row.style.borderColor = '', 2000);
+    console.error('Formspree error:', err);
+  }
+}
+
+// Allow Enter key in notify input
+document.getElementById('notifyEmail').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleNotify();
+});
+
+// Subtle teaser card hover tilt
+document.querySelectorAll('.teaser-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width  - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    card.style.transform = `perspective(600px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-2px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+// LANG TOGGLE
+var currentLang = 'pt';
+function toggleLang() {
+  currentLang = currentLang === 'pt' ? 'en' : 'pt';
+  document.getElementById('langToggle').textContent = currentLang === 'pt' ? 'EN' : 'PT';
+  document.querySelectorAll('[data-pt]').forEach(function(el) {
+    var val = currentLang === 'pt' ? el.getAttribute('data-pt') : el.getAttribute('data-en');
+    if (val !== null) el.innerHTML = val;
+  });
+  var inp = document.getElementById('notifyEmail');
+  if (inp) inp.placeholder = currentLang === 'pt' ? 'teu@email.pt' : 'your@email.com';
+}
+</script>
+</body>
+</html>
